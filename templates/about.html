@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+  <h1>About Page</h1>
+  <p>This is a template</p>
+
+  {{my_html|safe}}
+  
+  <h3>{{title|capfirst|upper}} </h3>
+  <h3>{{title|upper}} </h3>
+  <h3>{{title|title}} </h3>
+
+  <p>
+  {{my_number}}, {{my_list}}
+  </p>
+
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+  </ul>
+
+  <ul>
+  {%for my_sub_item in my_list%}
+      <li>{{forloop.counter}} - {{my_sub_item}}</li>
+  {%endfor%}
+  </ul>
+
+<ul>
+{%for my_sub_item in my_list%}
+  {% if my_sub_item == 456%}
+    <li>{{forloop.counter}} - {{my_sub_item|add:10000}}</li>
+  {% elif my_sub_item == 'abc' %}
+    <li>{{forloop.counter}} - {{my_sub_item}} is not a network</li>
+  {%else%}
+    <li>{{forloop.counter}} - {{my_sub_item}}</li>
+  {%endif%}
+{%endfor%}
+</ul>
+
+{%endblock content%}
